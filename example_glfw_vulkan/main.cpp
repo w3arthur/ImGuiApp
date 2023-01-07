@@ -352,8 +352,13 @@ static void glfw_error_callback(int error, const char* description)
 {
     fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
+int main();
+int WinMain()   //Windows Realease compiled
+{
+    main();
+}
 
-int main(int, char**)
+int main()  //int, char**
 {
     // Setup GLFW window
     glfwSetErrorCallback(glfw_error_callback);
@@ -472,11 +477,9 @@ int main(int, char**)
     }
 
     // Our state
-    bool show_demo_window = false;
     ImVec4 clear_color = ImVec4(0.138f, 0.634f, 0.882f, 1.00f);
 
     // Main loop
-    int ii{ 0 };
     while (!glfwWindowShouldClose(window))
     {
         // Poll and handle events (inputs, window resize, etc.)
