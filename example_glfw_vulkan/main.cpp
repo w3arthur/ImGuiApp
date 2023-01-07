@@ -9,7 +9,7 @@
 //   the backend itself (imgui_impl_vulkan.cpp), but should PROBABLY NOT be used by your own engine/app code.
 // Read comments in imgui_impl_vulkan.h.
 
-#include "imgui.h"
+#include <Application.h> //< #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_vulkan.h"
 #include <stdio.h>          // printf, fprintf
@@ -18,7 +18,7 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 #include <vulkan/vulkan.h>
-#include <Application.h>
+
 
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to maximize ease of testing and compatibility with old VS compilers.
 // To link with VS2010-era libraries, VS2015+ requires linking with legacy_stdio_definitions.lib, which we do using this pragma.
@@ -473,7 +473,6 @@ int main(int, char**)
 
     // Our state
     bool show_demo_window = false;
-    bool show_another_window = false;
     ImVec4 clear_color = ImVec4(0.138f, 0.634f, 0.882f, 1.00f);
 
     // Main loop
@@ -507,30 +506,11 @@ int main(int, char**)
         ImGui::NewFrame();
 
 
+        MyApp::RenderUI();      //////// ***My Code here 
 
-                //////// ***My Code here 
-
-
-        // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-        if (show_demo_window)
-            ImGui::ShowDemoWindow(&show_demo_window);
-
-        // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-        {
-            MyApp::RenderUI();
             
-        }
 
-        // 3. Show another simple window.
-        if (show_another_window)
-        {
-            ImGui::Begin("Another Window", &show_another_window);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
-            ImGui::Text("Hello from another window!");
-            if (ImGui::Button("Close Me"))
-                show_another_window = false;
-            ImGui::End();
-        }
-
+            //Check if delete this demo!
         // Rendering
         ImGui::Render();
         ImDrawData* main_draw_data = ImGui::GetDrawData();

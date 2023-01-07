@@ -58,4 +58,7 @@
       <Filter>imgui</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="imgui.ini" />
+  </ItemGroup>
 </Project>
